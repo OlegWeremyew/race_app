@@ -1,7 +1,7 @@
-import {FC, JSX} from "react";
-import {createStackNavigator, TransitionPresets} from "@react-navigation/stack";
-import {RacersTableScreen} from "../../screens";
-import {HomeStackParamList} from "../types";
+import {FC, JSX} from 'react';
+import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
+import {RacersTableScreen} from '../../screens';
+import {HomeStackParamList} from '../types';
 
 const Stack = createStackNavigator<HomeStackParamList>();
 

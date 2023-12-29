@@ -1,8 +1,8 @@
 import {FC, JSX} from 'react';
-import {RacersTable, ScreenWrapper} from "../../components";
+import {RacersTable, ScreenWrapper} from '../../components';
 
 export const RacersTableScreen: FC = (): JSX.Element => (
   <ScreenWrapper>
-    <RacersTable/>
+    <RacersTable />
   </ScreenWrapper>
-)
+);

@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {RacerInfoType} from "./types";
-import {RacesItem} from "@/api/types";
+import {RacerInfoType} from './types';
+import {RacesItem} from '@/api/types';
 
 const initialState: RacerInfoType = {
   driverRacesList: [] as RacesItem[],
@@ -15,8 +15,11 @@ const racerInfoSlice = createSlice({
   name: 'racerInfo',
   initialState,
   reducers: {
-    setDriverRacesList(state: RacerInfoType, action: PayloadAction<RacesItem[]>): void {
-      state.driverRacesList = action.payload
+    setDriverRacesList(
+      state: RacerInfoType,
+      action: PayloadAction<RacesItem[]>,
+    ): void {
+      state.driverRacesList = action.payload;
     },
     setRacesLimit(state: RacerInfoType, action: PayloadAction<number>): void {
       state.limit = action.payload;
@@ -28,10 +31,16 @@ const racerInfoSlice = createSlice({
     setRacesTotal(state: RacerInfoType, action: PayloadAction<number>): void {
       state.total = action.payload;
     },
-    setCircuitsTotalPages(state: RacerInfoType, action: PayloadAction<number>): void {
+    setCircuitsTotalPages(
+      state: RacerInfoType,
+      action: PayloadAction<number>,
+    ): void {
       state.totalPages = Math.ceil(action.payload / state.total);
     },
-    setLoadingStatus(state: RacerInfoType, action: PayloadAction<boolean>): void {
+    setLoadingStatus(
+      state: RacerInfoType,
+      action: PayloadAction<boolean>,
+    ): void {
       state.isLoading = action.payload;
     },
   },

@@ -1,16 +1,16 @@
 import {FC, JSX, useCallback} from 'react';
-import {DataTable} from "react-native-paper";
-import {getPaginationLabel} from "../../utils";
-import {numberOfItemsPerPageList} from "../../constants";
-import {useSelector} from "react-redux";
+import {DataTable} from 'react-native-paper';
+import {getPaginationLabel} from '../../utils';
+import {numberOfItemsPerPageList} from '../../constants';
+import {useSelector} from 'react-redux';
 import {
   getRacerInfoLimit,
   getRacerInfoPage,
   getRacerInfoTotalItems,
-  getRacerInfoTotalPages
-} from "@/store/racerInfo/selectors";
-import {setRacesLimit, setRacesPage} from "@/store/racerInfo/slice";
-import {useAppDispatch} from "../../hooks";
+  getRacerInfoTotalPages,
+} from '@/store/racerInfo/selectors';
+import {setRacesLimit, setRacesPage} from '@/store/racerInfo/slice';
+import {useAppDispatch} from '../../hooks';
 
 export const RacesTablePaginator: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -20,13 +20,15 @@ export const RacesTablePaginator: FC = (): JSX.Element => {
   const totalItems = useSelector(getRacerInfoTotalItems);
   const totalPages = useSelector(getRacerInfoTotalPages);
 
-  const onChangePage = useCallback((page: number) => {
+  const onChangePage = useCallback(
+    (page: number) => {
       dispatch(setRacesPage(page));
     },
     [dispatch],
   );
 
-  const onChangeLimit = useCallback((page: number) => {
+  const onChangeLimit = useCallback(
+    (page: number) => {
       dispatch(setRacesLimit(page));
     },
     [dispatch],

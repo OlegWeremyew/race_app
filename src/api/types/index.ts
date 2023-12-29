@@ -1,4 +1,4 @@
-import {RacerTableItem} from "@/components/RacersTable/types";
+import {RacerTableItem} from '@/components/RacersTable/types';
 
 export interface RacerInformationResponseFromServer {
   MRData: {
@@ -42,8 +42,8 @@ export interface RacerCircuitInformationResponseFromServer {
     offset: string;
     total: string;
     RaceTable: {
-      driverId: string
-      "Races": RacesItem[];
+      driverId: string;
+      Races: RacesItem[];
     };
   };
 }

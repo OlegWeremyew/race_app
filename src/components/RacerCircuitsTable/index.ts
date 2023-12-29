@@ -1,1 +1,1 @@
-export {RacerCircuitsTable} from  './RacerCircuitsTable';
+export {RacerCircuitsTable} from './RacerCircuitsTable';

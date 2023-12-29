@@ -7,4 +7,4 @@ export interface RacerTableItem {
   nationality: string;
   permanentNumber: string;
   code: string;
-};
+}

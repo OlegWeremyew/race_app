@@ -1,4 +1,4 @@
 export interface RacerCircuitsProps {
-  racerId: string
-  racerName: string
+  racerId: string;
+  racerName: string;
 }

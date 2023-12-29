@@ -1,3 +1,3 @@
 export interface RacerInfoProps {
-  racerId: string
+  racerId: string;
 }

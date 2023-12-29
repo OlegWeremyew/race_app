@@ -1,5 +1,5 @@
-import {RacesItem} from "../../../api/types";
+import {RacesItem} from '../../../api/types';
 
 export interface RacerTableRowType {
-  race: RacesItem,
+  race: RacesItem;
 }

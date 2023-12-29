@@ -1,9 +1,11 @@
-import {RootState} from "../store";
-import {RacesItem} from "@/api/types";
+import {RootState} from '../store';
+import {RacesItem} from '@/api/types';
 
-export const getRacerInfoPage = (state: RootState): number => state.racerInfo.page;
+export const getRacerInfoPage = (state: RootState): number =>
+  state.racerInfo.page;
 
-export const getRacerInfoLimit = (state: RootState): number => state.racerInfo.limit;
+export const getRacerInfoLimit = (state: RootState): number =>
+  state.racerInfo.limit;
 
 export const getRacerInfoTotalItems = (state: RootState): number =>
   state.racerInfo.total;
