@@ -1,8 +1,12 @@
-import {FC} from 'react';
+/**
+ * @format
+ */
+
+import {FC, JSX} from 'react';
 import {StyleSheet, Text, View} from "react-native";
 import {EmptyListProps} from "./types";
 
-export const EmptyList: FC<EmptyListProps> = ({title}) => (
+export const EmptyList: FC<EmptyListProps> = ({title}): JSX.Element => (
   <View>
     <Text style={styles.textStyle}>
       {title}

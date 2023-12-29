@@ -1,10 +1,20 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    "noImplicitAny": false, //warning
+    "noImplicitAny": false,
     "skipLibCheck": true,
     "baseUrl": "./src",
-    "paths": {}
+    "paths": {
+      "@/api/*": ["./api/*"],
+      "@/app/*": ["./app/*"],
+      "@/components/*": ["./components/*"],
+      "@/constants/*": ["./constants/*"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/navigations/*": ["./navigations/*"],
+      "@/screens/*": ["./screens/*"],
+      "@/store/*": ["./store/*"],
+      "@/utils/*": ["./utils/*"],
+    }
   },
   "include": ["**/*.ts", "**/*.tsx", "**/**/*.ts", "**/**/*.tsx"]
 }

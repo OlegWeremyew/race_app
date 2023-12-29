@@ -1,6 +1,6 @@
 import {AxiosError, AxiosResponse} from "axios";
 import {instance} from "../instance";
-import {RacerTableItem} from "../../components/RacersTable/types";
+import {RacerTableItem} from "@/components/RacersTable/types";
 import {RacerCircuitInformationResponseFromServer, RacerInformationResponseFromServer} from "../types";
 
 export const driversApi = {

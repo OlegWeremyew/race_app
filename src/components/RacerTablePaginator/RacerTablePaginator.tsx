@@ -1,13 +1,13 @@
-import React, {FC, useCallback} from 'react';
+import React, {FC, JSX, useCallback} from 'react';
 import {DataTable} from "react-native-paper";
 import {useSelector} from "react-redux";
-import { setRacersLimit, setRacersPage} from "../../store/racers/slice";
+import { setRacersLimit, setRacersPage} from "@/store/racers/slice";
 import {useAppDispatch} from "../../hooks";
-import {getRacersLimit, getRacersPage, getRacersTotalItems, getRacersTotalPages} from "../../store/racers/selectors";
+import {getRacersLimit, getRacersPage, getRacersTotalItems, getRacersTotalPages} from "@/store/racers/selectors";
 import {getPaginationLabel} from "../../utils";
 import {numberOfItemsPerPageList} from "../../constants";
 
-export const RacerTablePaginator: FC = () => {
+export const RacerTablePaginator: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const page = useSelector(getRacersPage);

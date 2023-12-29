@@ -1,5 +1,5 @@
 import {RootState} from "../store";
-import {RacesItem} from "../../api/types";
+import {RacesItem} from "@/api/types";
 
 export const getRacerInfoPage = (state: RootState): number => state.racerInfo.page;
 

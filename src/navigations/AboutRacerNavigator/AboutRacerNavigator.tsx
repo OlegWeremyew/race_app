@@ -1,11 +1,11 @@
-import {FC} from "react";
+import {FC, JSX} from "react";
 import {createStackNavigator, TransitionPresets} from "@react-navigation/stack";
 import {RacerInfoScreen, RacerSchemeScreen} from "../../screens";
 import {RacerAboutStackParamList} from "../types";
 
 const Stack = createStackNavigator<RacerAboutStackParamList>();
 
-export const AboutRacerNavigator: FC = () => (
+export const AboutRacerNavigator: FC = (): JSX.Element => (
   <Stack.Navigator
     screenOptions={{
       headerBackTitleVisible: false,
@@ -28,4 +28,3 @@ export const AboutRacerNavigator: FC = () => (
     />
   </Stack.Navigator>
 );
-

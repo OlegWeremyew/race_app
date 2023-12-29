@@ -1,8 +1,12 @@
+/**
+ * @format
+ */
+
+import {FC, JSX} from "react";
 import {StyleSheet, View} from "react-native";
 import {ActivityIndicator} from "react-native-paper";
-import {FC} from "react";
 
-export const Loader: FC = () => (
+export const Loader: FC = (): JSX.Element => (
   <View style={styles.loader}>
     <ActivityIndicator animating size="large" color="red"/>
   </View>

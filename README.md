@@ -1,3 +1,11 @@
+# Race app
+### stack: 
+<ul>
+    <li>React-native</li>
+    <li>TypeScript</li>
+    <li>Redux Toolkit</li>
+</ul>
+
 # Getting Started
 
 ## Step 1: Start the Metro Server

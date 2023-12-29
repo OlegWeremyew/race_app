@@ -1,7 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RacerInfoType} from "./types";
-import {RacesItem} from "../../api/types";
-import {RacersTableType} from "../racers/types";
+import {RacesItem} from "@/api/types";
 
 const initialState: RacerInfoType = {
   driverRacesList: [] as RacesItem[],

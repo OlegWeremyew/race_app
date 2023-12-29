@@ -1,10 +1,10 @@
-import {FC, useCallback, useEffect} from 'react';
+import {FC, JSX, useCallback, useEffect} from 'react';
 import {ScrollView, StyleSheet, Text} from "react-native";
 import {DataTable} from "react-native-paper";
 import {useNavigation} from "@react-navigation/core";
 import {useSelector} from "react-redux";
 import {RacerTableItem} from "./types";
-import {getLoadingStatus, getRacersLimit, getRacersList, getRacersPage} from "../../store/racers/selectors";
+import {getLoadingStatus, getRacersLimit, getRacersList, getRacersPage} from "@/store/racers/selectors";
 import {RacerTablePaginator} from "../RacerTablePaginator";
 import {driversApi} from "../../api";
 import {
@@ -12,14 +12,14 @@ import {
   setRacersList,
   setRacersTotal,
   setRacersTotalPages
-} from "../../store/racers/slice";
+} from "@/store/racers/slice";
 import {useAppDispatch} from "../../hooks";
 import {Loader} from "../Loader";
 import {RacerTableRow} from "../RacerTableRow";
 import {TableHeaderRow} from "../TableHeaderRow";
 import {EmptyList} from "../EmptyList";
 
-export const RacersTable: FC = () => {
+export const RacersTable: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<any>();
 

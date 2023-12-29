@@ -1,5 +1,5 @@
 import {RootState} from "../store";
-import {RacerTableItem} from "../../components/RacersTable/types";
+import {RacerTableItem} from "@/components/RacersTable/types";
 
 export const getRacersPage = (state: RootState): number => state.racers.page;
 

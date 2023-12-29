@@ -1,4 +1,4 @@
-import {RacerTableItem} from "../../components/RacersTable/types";
+import {RacerTableItem} from "@/components/RacersTable/types";
 
 export interface RacerInformationResponseFromServer {
   MRData: {

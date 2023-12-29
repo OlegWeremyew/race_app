@@ -1,8 +1,8 @@
-import React, {FC} from 'react';
+import {FC, JSX, memo} from 'react';
 import {DataTable} from "react-native-paper";
 import {RacerTableRowType} from "./types";
 
-export const RacerTableRow: FC<RacerTableRowType> = ({racer, nameHandlerClick, racesHandleClick}) => (
+export const RacerTableRow: FC<RacerTableRowType> = memo(({racer, nameHandlerClick, racesHandleClick}): JSX.Element => (
   <DataTable.Row>
     <DataTable.Cell onPress={() => nameHandlerClick(racer.driverId)}>
       {`${racer.givenName} ${racer.familyName}`}
@@ -13,4 +13,4 @@ export const RacerTableRow: FC<RacerTableRowType> = ({racer, nameHandlerClick, r
       Open Races
     </DataTable.Cell>
   </DataTable.Row>
-);
+));

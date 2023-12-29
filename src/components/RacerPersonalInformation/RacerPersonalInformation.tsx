@@ -1,12 +1,12 @@
-import {FC, memo, useEffect, useState} from 'react';
+import {FC, JSX, memo, useEffect, useState} from 'react';
 import {StyleSheet, Text} from "react-native";
+import {useNavigation} from "@react-navigation/core";
+import {Card} from "react-native-paper";
 import {driversApi} from "../../api";
 import {RacerTableItem} from "../RacersTable/types";
-import {Card} from "react-native-paper";
 import {RacerInfoProps} from "./types";
-import {useNavigation} from "@react-navigation/core";
 
-export const RacerPersonalInformation: FC<RacerInfoProps> = memo(({racerId}) => {
+export const RacerPersonalInformation: FC<RacerInfoProps> = memo(({racerId}): JSX.Element => {
   const navigation = useNavigation();
 
   const [driverInfo, setDriverInfo] = useState<RacerTableItem>({} as RacerTableItem)
