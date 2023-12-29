@@ -20,7 +20,12 @@ const styles = StyleSheet.create({
   screenTitle: {
     margin: 10,
     fontSize: 20,
-    color: '#000',
+    color: '#fff',
     fontWeight: 'bold',
+    borderRadius: 4,
+    padding: 5,
+    width: 120,
+    backgroundColor: 'gray',
+    textAlign: "center"
   },
 });

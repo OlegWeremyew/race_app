@@ -1,9 +1,10 @@
 # Race app
 ### stack: 
 <ul>
-    <li>React-native</li>
+    <li>React-Native</li>
     <li>TypeScript</li>
     <li>Redux Toolkit</li>
+    <li>React-native-paper</li>
 </ul>
 
 # Getting Started
