@@ -1,9 +1,10 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RacersTableType} from './types';
 import {RacerTableItem} from '@/components/RacersTable/types';
+import {EMPTY_ARRAY} from "@/constants/index";
 
 const initialState: RacersTableType = {
-  racersList: [] as RacerTableItem[],
+  racersList: EMPTY_ARRAY as RacerTableItem[],
   isLoading: false,
   page: 0,
   limit: 10,

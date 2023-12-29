@@ -1,9 +1,10 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RacerInfoType} from './types';
 import {RacesItem} from '@/api/types';
+import {EMPTY_ARRAY} from "@/constants/index";
 
 const initialState: RacerInfoType = {
-  driverRacesList: [] as RacesItem[],
+  driverRacesList: EMPTY_ARRAY as RacesItem[],
   page: 0,
   limit: 10,
   total: 0,

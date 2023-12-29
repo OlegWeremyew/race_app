@@ -82,7 +82,7 @@ export const RacersTable: FC = (): JSX.Element => {
           third="Nationality"
           fourth="Races info"
         />
-        {racersList.length ? (
+        {racersList?.length ? (
           racersList.map((racer: RacerTableItem, index: number) => (
             <RacerTableRow
               key={racer.driverId + index}
