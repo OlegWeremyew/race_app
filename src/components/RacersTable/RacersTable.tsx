@@ -5,21 +5,16 @@ import {useNavigation} from '@react-navigation/core';
 import {useSelector} from 'react-redux';
 import {RacerTableItem} from './types';
 import {
-  getLoadingStatus,
   getRacersLimit,
   getRacersList,
-  getRacersPage,
+  getRacersPage, getStatus,
 } from '@/store/racers/selectors';
-import {driversApi} from '@/api/driversApi';
-import {
-  setLoadingStatus,
-  setRacersList,
-  setRacersTotal,
-} from '@/store/racers/slice';
 import {useAppDispatch} from '@/hooks/useAppDispatch';
 import {TableHeaderRow, Loader, EmptyList} from '@/components/common';
 import {RacerTablePaginator} from '../RacerTablePaginator';
 import {RacerTableRow} from '../RacerTableRow';
+import {fetchRacersList} from "@/store/racers/asyncActions";
+import {Status} from "@/constants/index";
 
 export const RacersTable: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -28,7 +23,7 @@ export const RacersTable: FC = (): JSX.Element => {
   const page = useSelector(getRacersPage);
   const limit = useSelector(getRacersLimit);
   const racersList = useSelector(getRacersList);
-  const isLoading = useSelector(getLoadingStatus);
+  const status = useSelector(getStatus);
 
   const pressByRacerName = useCallback(
     (driverId: string): void => {
@@ -56,19 +51,10 @@ export const RacersTable: FC = (): JSX.Element => {
   );
 
   useEffect(() => {
-    dispatch(setLoadingStatus(true));
-    driversApi
-      .getDrivers(limit, page)
-      .then(({racers, total}) => {
-        dispatch(setRacersList(racers));
-        dispatch(setRacersTotal(total));
-      })
-      .finally(() => {
-        dispatch(setLoadingStatus(false));
-      });
+    dispatch(fetchRacersList({limit, page}))
   }, [limit, page]);
 
-  if (isLoading) {
+  if (status === Status.LOADING) {
     return <Loader />;
   }
 

@@ -1,5 +1,6 @@
 import {RootState} from '../store';
 import {RacesItem} from '@/api/types';
+import {Status} from "@/constants/index";
 
 export const getRacerInfoPage = (state: RootState): number =>
   state.racerInfo.page;
@@ -13,8 +14,8 @@ export const getRacerInfoTotalItems = (state: RootState): number =>
 export const getRacerInfoTotalPages = (state: RootState): number =>
   state.racerInfo.totalPages;
 
-export const getRacerInfoLoadingStatus = (state: RootState): boolean =>
-  state.racerInfo.isLoading;
+export const getRacerStatus = (state: RootState): Status =>
+  state.racerInfo.status;
 
 export const getRacerInfoRacesList = (state: RootState): RacesItem[] =>
   state.racerInfo.driverRacesList;

@@ -1,7 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RacerInfoType} from './types';
 import {RacesItem} from '@/api/types';
-import {EMPTY_ARRAY} from "@/constants/index";
+import {EMPTY_ARRAY, Status} from "@/constants/index";
+import {fetchDriverRacesList} from "@/store/racerInfo/asyncActions";
 
 const initialState: RacerInfoType = {
   driverRacesList: EMPTY_ARRAY as RacesItem[],
@@ -9,19 +10,13 @@ const initialState: RacerInfoType = {
   limit: 10,
   total: 0,
   totalPages: 0,
-  isLoading: false,
+  status: Status.LOADING,
 };
 
 const racerInfoSlice = createSlice({
   name: 'racerInfo',
   initialState,
   reducers: {
-    setDriverRacesList(
-      state: RacerInfoType,
-      action: PayloadAction<RacesItem[]>,
-    ): void {
-      state.driverRacesList = action.payload;
-    },
     setRacesLimit(state: RacerInfoType, action: PayloadAction<number>): void {
       state.limit = action.payload;
       state.page = 0;
@@ -29,25 +24,30 @@ const racerInfoSlice = createSlice({
     setRacesPage(state: RacerInfoType, action: PayloadAction<number>): void {
       state.page = action.payload;
     },
-    setRacesTotal(state: RacerInfoType, action: PayloadAction<number>): void {
-      state.total = action.payload;
-      state.totalPages = Math.ceil(action.payload / state.total);
-    },
-    setLoadingStatus(
-      state: RacerInfoType,
-      action: PayloadAction<boolean>,
-    ): void {
-      state.isLoading = action.payload;
-    },
   },
+  extraReducers: builder => {
+    builder.addCase(fetchDriverRacesList.pending, state => {
+      state.status = Status.LOADING;
+      state.racersList = EMPTY_ARRAY;
+    });
+
+    builder.addCase(fetchDriverRacesList.fulfilled, (state, action) => {
+      state.driverRacesList = action.payload.MRData.RaceTable.Races;
+      state.total = Number(action.payload.MRData.total);
+      state.totalPages = Math.ceil(action.payload / state.total);
+      state.status = Status.SUCCESS;
+    });
+
+    builder.addCase(fetchDriverRacesList.rejected, state => {
+      state.status = Status.ERROR;
+      state.racersList = EMPTY_ARRAY;
+    });
+  }
 });
 
 export const {
-  setDriverRacesList,
   setRacesLimit,
   setRacesPage,
-  setLoadingStatus,
-  setRacesTotal
 } = racerInfoSlice.actions;
 
 export default racerInfoSlice.reducer;

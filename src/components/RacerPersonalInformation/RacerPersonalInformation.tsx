@@ -5,18 +5,18 @@ import {Card} from 'react-native-paper';
 import {useSelector} from "react-redux";
 import {driversApi} from '@/api/driversApi';
 import {useAppDispatch} from "@/hooks/useAppDispatch";
-import {getRacerInfoLoadingStatus} from "@/store/racerInfo/selectors";
-import {setLoadingStatus} from "@/store/racerInfo/slice";
 import {GoBackButton, Loader} from "@/components/common";
 import {RacerTableItem} from '../RacersTable/types';
 import {RacerInfoProps} from './types';
+import {getRacerStatus} from "@/store/racerInfo/selectors";
+import {Status} from "@/constants/index";
 
 export const RacerPersonalInformation: FC<RacerInfoProps> = memo(
   ({racerId}): JSX.Element => {
     const navigation = useNavigation<any>();
     const dispatch = useAppDispatch();
 
-    const isLoading = useSelector(getRacerInfoLoadingStatus);
+    const status = useSelector(getRacerStatus);
 
     const [driverInfo, setDriverInfo] = useState<RacerTableItem>(
       {} as RacerTableItem,
@@ -33,17 +33,13 @@ export const RacerPersonalInformation: FC<RacerInfoProps> = memo(
     };
 
     useEffect(() => {
-      dispatch(setLoadingStatus(true));
       driversApi.getRacerInformationById(racerId)
         .then(driver => {
           setDriverInfo(driver);
         })
-        .finally(() => {
-          dispatch(setLoadingStatus(false));
-        });
     }, [racerId]);
 
-    if (isLoading) {
+    if (status === Status.LOADING) {
       return <Loader/>;
     }
 

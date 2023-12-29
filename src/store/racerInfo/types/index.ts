@@ -1,4 +1,5 @@
 import {RacesItem} from '@/api/types';
+import {Status} from "@/constants/index";
 
 export interface RacerInfoType {
   driverRacesList: RacesItem[];
@@ -6,5 +7,5 @@ export interface RacerInfoType {
   limit: number;
   total: number;
   totalPages: number;
-  isLoading: boolean;
+  status: Status;
 }

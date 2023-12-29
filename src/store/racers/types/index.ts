@@ -1,4 +1,5 @@
 import {RacerTableItem} from '@/components/RacersTable/types';
+import {Status} from "@/constants/index";
 
 export interface RacersTableType {
   racersList: RacerTableItem[];
@@ -6,5 +7,5 @@ export interface RacersTableType {
   limit: number;
   total: number;
   totalPages: number;
-  isLoading: boolean;
+  status: Status;
 }

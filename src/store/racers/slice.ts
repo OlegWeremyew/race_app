@@ -1,11 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RacersTableType} from './types';
 import {RacerTableItem} from '@/components/RacersTable/types';
-import {EMPTY_ARRAY} from "@/constants/index";
+import {EMPTY_ARRAY, Status} from "@/constants/index";
+import {fetchRacersList} from "@/store/racers/asyncActions";
 
 const initialState: RacersTableType = {
   racersList: EMPTY_ARRAY as RacerTableItem[],
-  isLoading: false,
+  status: Status.LOADING,
   page: 0,
   limit: 10,
   total: 0,
@@ -13,47 +14,44 @@ const initialState: RacersTableType = {
 };
 
 const racersSlice = createSlice({
-  name: 'racers',
-  initialState,
-  reducers: {
-    setRacersList(
-      state: RacersTableType,
-      action: PayloadAction<RacerTableItem[]>,
-    ): void {
-      state.racersList = action.payload;
+    name: 'racers',
+    initialState,
+    reducers: {
+      setRacersLimit(
+        state: RacersTableType,
+        action: PayloadAction<number>,
+      ): void {
+        state.limit = action.payload;
+        state.page = 0;
+      },
+      setRacersPage(state: RacersTableType, action: PayloadAction<number>): void {
+        state.page = action.payload;
+      },
     },
-    setRacersLimit(
-      state: RacersTableType,
-      action: PayloadAction<number>,
-    ): void {
-      state.limit = action.payload;
-      state.page = 0;
+    extraReducers: builder => {
+      builder.addCase(fetchRacersList.pending, state => {
+        state.status = Status.LOADING;
+        state.racersList = EMPTY_ARRAY;
+      });
+
+      builder.addCase(fetchRacersList.fulfilled, (state, action) => {
+        state.racersList = action.payload.MRData.DriverTable.Drivers;
+        state.total = Number(action.payload.MRData.total);
+        state.totalPages = Math.ceil(action.payload / state.total);
+        state.status = Status.SUCCESS;
+      });
+
+      builder.addCase(fetchRacersList.rejected, state => {
+        state.status = Status.ERROR;
+        state.racersList = EMPTY_ARRAY;
+      });
     },
-    setRacersTotal(
-      state: RacersTableType,
-      action: PayloadAction<number>,
-    ): void {
-      state.total = action.payload;
-      state.totalPages = Math.ceil(action.payload / state.total);
-    },
-    setRacersPage(state: RacersTableType, action: PayloadAction<number>): void {
-      state.page = action.payload;
-    },
-    setLoadingStatus(
-      state: RacersTableType,
-      action: PayloadAction<boolean>,
-    ): void {
-      state.isLoading = action.payload;
-    },
-  },
-});
+  }
+);
 
 export const {
-  setRacersList,
   setRacersLimit,
   setRacersPage,
-  setLoadingStatus,
-  setRacersTotal,
 } = racersSlice.actions;
 
 export default racersSlice.reducer;

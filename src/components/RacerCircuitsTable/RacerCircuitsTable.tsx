@@ -2,20 +2,15 @@ import {FC, JSX, memo, useEffect} from 'react';
 import {DataTable} from 'react-native-paper';
 import {ScrollView, StyleSheet, Text} from 'react-native';
 import {useSelector} from 'react-redux';
-import {
-  getRacerInfoLimit,
-  getRacerInfoLoadingStatus,
-  getRacerInfoPage,
-  getRacerInfoRacesList,
-} from '@/store/racerInfo/selectors';
+import {getRacerInfoLimit, getRacerInfoPage, getRacerInfoRacesList, getRacerStatus,} from '@/store/racerInfo/selectors';
 import {RacesItem} from '@/api/types';
-import {driversApi} from '@/api/driversApi';
 import {RacerCircuitsProps} from './types';
 import {useAppDispatch} from '@/hooks/useAppDispatch';
-import {setDriverRacesList, setLoadingStatus, setRacesTotal} from '@/store/racerInfo/slice';
-import {TableHeaderRow, EmptyList, Loader, GoBackButton} from '@/components/common';
+import {EmptyList, GoBackButton, Loader, TableHeaderRow} from '@/components/common';
 import {RacesTablePaginator} from '../RacesTablePaginator';
 import {RacesTableRow} from '../RacesTableRow';
+import {fetchDriverRacesList} from "@/store/racerInfo/asyncActions";
+import {Status} from "@/constants/index";
 
 export const RacerCircuitsTable: FC<RacerCircuitsProps> = memo(
   ({racerId, racerName}): JSX.Element => {
@@ -24,22 +19,13 @@ export const RacerCircuitsTable: FC<RacerCircuitsProps> = memo(
     const page = useSelector(getRacerInfoPage);
     const limit = useSelector(getRacerInfoLimit);
     const driverRacesList = useSelector(getRacerInfoRacesList);
-    const isLoading = useSelector(getRacerInfoLoadingStatus);
+    const status = useSelector(getRacerStatus);
 
     useEffect(() => {
-      dispatch(setLoadingStatus(true));
-      driversApi
-        .getRacerCircuitInformationById(racerId, limit, page)
-        .then(({races, total}) => {
-          dispatch(setDriverRacesList(races));
-          dispatch(setRacesTotal(total));
-        })
-        .finally(() => {
-          dispatch(setLoadingStatus(false));
-        });
-    }, [limit, page]);
+      dispatch(fetchDriverRacesList({racerId, limit, page}))
+    }, [limit, page, racerId]);
 
-    if (isLoading) {
+    if (status === Status.LOADING) {
       return <Loader/>;
     }
 

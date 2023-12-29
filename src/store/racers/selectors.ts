@@ -14,5 +14,5 @@ export const getRacersTotalPages = (state: RootState): number =>
 export const getRacersList = (state: RootState): RacerTableItem[] =>
   state.racers.racersList;
 
-export const getLoadingStatus = (state: RootState): boolean =>
-  state.racers.isLoading;
+export const getStatus = (state: RootState): Status =>
+  state.racers.status;
