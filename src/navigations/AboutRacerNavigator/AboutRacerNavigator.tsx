@@ -1,6 +1,7 @@
 import {FC, JSX} from 'react';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-import {RacerInfoScreen, RacerSchemeScreen} from '../../screens';
+import {RacerSchemeScreen} from '@/screens/RacerSchemeScreen';
+import {RacerInfoScreen} from '@/screens/RacerInfoScreen';
 import {RacerAboutStackParamList} from '../types';
 
 const Stack = createStackNavigator<RacerAboutStackParamList>();

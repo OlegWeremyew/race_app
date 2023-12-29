@@ -30,11 +30,6 @@ const racerInfoSlice = createSlice({
     },
     setRacesTotal(state: RacerInfoType, action: PayloadAction<number>): void {
       state.total = action.payload;
-    },
-    setCircuitsTotalPages(
-      state: RacerInfoType,
-      action: PayloadAction<number>,
-    ): void {
       state.totalPages = Math.ceil(action.payload / state.total);
     },
     setLoadingStatus(
@@ -50,8 +45,8 @@ export const {
   setDriverRacesList,
   setRacesLimit,
   setRacesPage,
-  setCircuitsTotalPages,
   setLoadingStatus,
+  setRacesTotal
 } = racerInfoSlice.actions;
 
 export default racerInfoSlice.reducer;

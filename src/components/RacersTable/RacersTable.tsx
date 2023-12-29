@@ -10,18 +10,16 @@ import {
   getRacersList,
   getRacersPage,
 } from '@/store/racers/selectors';
-import {RacerTablePaginator} from '../RacerTablePaginator';
-import {driversApi} from '../../api';
+import {driversApi} from '@/api/driversApi';
 import {
   setLoadingStatus,
   setRacersList,
   setRacersTotal,
 } from '@/store/racers/slice';
-import {useAppDispatch} from '../../hooks';
-import {Loader} from '../Loader';
+import {useAppDispatch} from '@/hooks/useAppDispatch';
+import {TableHeaderRow, Loader, EmptyList} from '@/components/common';
+import {RacerTablePaginator} from '../RacerTablePaginator';
 import {RacerTableRow} from '../RacerTableRow';
-import {TableHeaderRow} from '../TableHeaderRow';
-import {EmptyList} from '../EmptyList';
 
 export const RacersTable: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();

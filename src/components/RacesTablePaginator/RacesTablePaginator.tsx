@@ -1,7 +1,5 @@
 import {FC, JSX, useCallback} from 'react';
 import {DataTable} from 'react-native-paper';
-import {getPaginationLabel} from '../../utils';
-import {numberOfItemsPerPageList} from '../../constants';
 import {useSelector} from 'react-redux';
 import {
   getRacerInfoLimit,
@@ -10,7 +8,9 @@ import {
   getRacerInfoTotalPages,
 } from '@/store/racerInfo/selectors';
 import {setRacesLimit, setRacesPage} from '@/store/racerInfo/slice';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '@/hooks/useAppDispatch';
+import {getPaginationLabel} from '@/utils/getPaginationLabel';
+import {numberOfItemsPerPageList} from '@/constants/index';
 
 export const RacesTablePaginator: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();

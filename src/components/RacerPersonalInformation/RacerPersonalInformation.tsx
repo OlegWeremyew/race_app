@@ -1,22 +1,26 @@
 import {FC, JSX, memo, useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {Card} from 'react-native-paper';
-import {driversApi} from '../../api';
+import {useSelector} from "react-redux";
+import {driversApi} from '@/api/driversApi';
+import {useAppDispatch} from "@/hooks/useAppDispatch";
+import {getRacerInfoLoadingStatus} from "@/store/racerInfo/selectors";
+import {setLoadingStatus} from "@/store/racerInfo/slice";
+import {GoBackButton, Loader} from "@/components/common";
 import {RacerTableItem} from '../RacersTable/types';
 import {RacerInfoProps} from './types';
 
 export const RacerPersonalInformation: FC<RacerInfoProps> = memo(
   ({racerId}): JSX.Element => {
     const navigation = useNavigation<any>();
+    const dispatch = useAppDispatch();
+
+    const isLoading = useSelector(getRacerInfoLoadingStatus);
 
     const [driverInfo, setDriverInfo] = useState<RacerTableItem>(
       {} as RacerTableItem,
     );
-
-    const goBack = (): void => {
-      navigation.goBack();
-    };
 
     const goToDriverRaceList = (): void => {
       navigation.navigate('AboutRacerNavigator', {
@@ -29,16 +33,23 @@ export const RacerPersonalInformation: FC<RacerInfoProps> = memo(
     };
 
     useEffect(() => {
-      driversApi.getRacerInformationById(racerId).then(driver => {
-        setDriverInfo(driver);
-      });
+      dispatch(setLoadingStatus(true));
+      driversApi.getRacerInformationById(racerId)
+        .then(driver => {
+          setDriverInfo(driver);
+        })
+        .finally(() => {
+          dispatch(setLoadingStatus(false));
+        });
     }, [racerId]);
+
+    if (isLoading) {
+      return <Loader/>;
+    }
 
     return (
       <>
-        <Text style={styles.screenTitle} onPress={goBack}>
-          Go back
-        </Text>
+        <GoBackButton/>
         <Text style={styles.screenTitle}>Racer Information</Text>
         <Card style={styles.cardWrapper}>
           <Card.Content>

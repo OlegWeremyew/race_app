@@ -1,6 +1,7 @@
 import {FC, JSX} from 'react';
 import {useRoute} from '@react-navigation/core';
-import {RacerCircuitsTable, ScreenWrapper} from '../../components';
+import {RacerCircuitsTable} from '@/components/RacerCircuitsTable';
+import {ScreenWrapper} from '@/components/common/ScreenWrapper';
 import {RacerCircuitsRouteProps} from '@/navigations/types';
 
 export const RacerSchemeScreen: FC = (): JSX.Element => {

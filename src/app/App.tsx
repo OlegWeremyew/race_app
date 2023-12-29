@@ -8,7 +8,7 @@ import {Provider as NativePaperProvider} from 'react-native-paper';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {enableFreeze} from 'react-native-screens';
 import {store} from '@/store/store';
-import {Navigations} from '../navigations';
+import {Navigations} from '@/navigations/Navigations';
 
 enableFreeze(true);
 

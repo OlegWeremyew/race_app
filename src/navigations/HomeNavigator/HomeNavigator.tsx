@@ -1,6 +1,6 @@
 import {FC, JSX} from 'react';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-import {RacersTableScreen} from '../../screens';
+import {RacersTableScreen} from '@/screens/RacersTableScreen';
 import {HomeStackParamList} from '../types';
 
 const Stack = createStackNavigator<HomeStackParamList>();
