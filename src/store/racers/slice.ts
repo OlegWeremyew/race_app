@@ -37,7 +37,7 @@ const racersSlice = createSlice({
       builder.addCase(fetchRacersList.fulfilled, (state, action) => {
         state.racersList = action.payload.MRData.DriverTable.Drivers;
         state.total = Number(action.payload.MRData.total);
-        state.totalPages = Math.ceil(action.payload / state.total);
+        state.totalPages = Math.ceil(state.total / state.limit);
         state.status = Status.SUCCESS;
       });
 

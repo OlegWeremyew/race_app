@@ -9,7 +9,7 @@ export const fetchDriverRacesList = createAsyncThunk(
       const {data} = await instance.get(`/drivers/${racerId}/races.json`, {
         params: {
           limit,
-          page,
+          offset: page,
         },
       });
       return data;
