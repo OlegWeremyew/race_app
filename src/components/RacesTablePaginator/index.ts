@@ -1,0 +1,1 @@
+export {RacesTablePaginator} from './RacesTablePaginator';

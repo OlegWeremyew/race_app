@@ -1,0 +1,1 @@
+export {getPaginationLabel} from './getPaginationLabel';
