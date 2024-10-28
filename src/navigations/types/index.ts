@@ -19,6 +19,7 @@ export type RacerCircuitsRouteProps = RouteProp<
   RacerAboutStackParamList,
   'RacerSchemeScreen'
 >;
+
 export type RacerInfoRouteProps = RouteProp<
   RacerAboutStackParamList,
   'RacerInfoScreen'
